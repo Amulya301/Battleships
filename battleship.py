@@ -92,7 +92,7 @@ def checkShip(grid, ship):
     count=0
     for i in range(3):
         s=ship[i]
-        if grid[s[0]][s[1]]==1:
+        if grid[s[0]][s[1]]==EMPTY_UNCLICKED:
             count=count+1
     if count==3:
         return True
