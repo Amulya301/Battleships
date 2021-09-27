@@ -64,9 +64,7 @@ Returns: 2D list of ints
 def emptyGrid(rows, cols):
     grid=[[EMPTY_UNCLICKED]*cols for i in range(rows)]
     return grid
-print(emptyGrid(10,10))
-print(emptyGrid(4,6))
-print(emptyGrid(0,0))
+
 '''
 createShip()
 Parameters: no parameters
@@ -89,15 +87,10 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-    count=0
-    for i in range(3):
-        
-        if grid[ship[i][0]][ship[i][1]]==EMPTY_UNCLICKED:
-            count=count+1
-    if count==3:
-        return True
-    else:
-        return False 
+    for i in ship:           
+        if grid[i[0]][i[1]]!=EMPTY_UNCLICKED:
+            return False
+    return True
 
 
 '''
