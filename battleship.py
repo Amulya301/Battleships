@@ -31,7 +31,8 @@ def makeModel(data):
     data["csize"] = data["bsize"] / data["rows"]
     data["noofships"] = 5
     pcboard = emptyGrid(data["rows"], data["cols"])
-    userboard = emptyGrid(data["rows"], data["cols"])
+    #userboard = emptyGrid(data["rows"], data["cols"])
+    userboard=test.testGrid()
     createShip()
     addShips(pcboard, data["noofships"])
     data["board1"] = pcboard
@@ -135,7 +136,7 @@ def drawGrid(data, canvas, grid, showShips):
                 canvas.create_rectangle(data["csize"]*row,data["csize"]*col,data["csize"]*(row+1),data["csize"]*(col+1),fill="yellow")
             else:
                 canvas.create_rectangle(data["csize"]*row,data["csize"]*col,data["csize"]*(row+1),data["csize"]*(col+1),fill="blue")
-    return
+    return canvas.pack()
 
 
 ### WEEK 2 ###
@@ -307,5 +308,4 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    test.testMakeModel()
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
