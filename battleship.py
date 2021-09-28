@@ -29,11 +29,9 @@ def makeModel(data):
     data["cols"] = 10
     data["bsize"] = 500
     data["csize"] = data["bsize"] / data["rows"]
-    data["noofshipscomp"] = 5
-    data["noofshipsuser"] = 5
-    data["pcboard"] = emptyGrid(data["rows"], data["cols"])
+    data["noofships"] = 5
     data["userboard"] = emptyGrid(data["rows"], data["cols"])
-    data["pcboard"] = addShips(data["pcboard"], data["noofshipscomp"])
+    data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
     return data
 
 
