@@ -30,13 +30,11 @@ def makeModel(data):
     data["bsize"] = 500
     data["csize"] = data["bsize"] / data["rows"]
     data["noofshipscomp"] = 5
-    data["noofshipsuser"]=5
-    pcboard = emptyGrid(data["rows"], data["cols"])
-    #userboard = emptyGrid(data["rows"], data["cols"])
-    userboard=test.testGrid()
-    addShips(pcboard, data["noofshipscomp"])
-    data["board1"] = pcboard
-    data["board2"] = userboard
+    data["noofshipsuser"] = 5
+    data["pcboard"] = emptyGrid(data["rows"], data["cols"])
+    #data["userboard"] = emptyGrid(data["rows"], data["cols"])
+    data["userboard"] = test.testGrid()
+    data["pcboard"] = addShips(data["pcboard"], data["noofshipscomp"])
     return data
 
 
@@ -46,8 +44,8 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    userCanvas=drawGrid(data,userCanvas,data["board2"],True)
-    compCanvas=drawGrid(data,compCanvas,data["board1"],True)
+    userCanvas=drawGrid(data,userCanvas,data["userboard"],True)
+    compCanvas=drawGrid(data,compCanvas,data["pcboard"],True)
     return
 
 
