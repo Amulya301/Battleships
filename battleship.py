@@ -99,7 +99,7 @@ addShips(grid, numShips)
 Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
-def addShips(grid, numShips):
+def addShips(grid, numShips):   
     count=0
     while count< numShips:
         ship2=createShip()
