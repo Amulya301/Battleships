@@ -41,9 +41,7 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    userCanvas = drawGrid(data, userCanvas, data["userboard"], True)
-    compCanvas = drawGrid(data, compCanvas, data["pcboard"], True)
-    return
+    return 
 
 
 '''
@@ -131,7 +129,7 @@ def drawGrid(data, canvas, grid, showShips):
                 canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "yellow")
             else:
                 canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "blue")
-    return 
+    return data
 
 
 ### WEEK 2 ###
@@ -303,4 +301,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    runSimulation(500, 500)
+    test.testDrawGrid()
+    #runSimulation(500, 500)
