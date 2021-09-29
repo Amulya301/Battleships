@@ -25,7 +25,15 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    return
+    data["rows"] = 10
+    data["cols"] = 10
+    data["bsize"] = 500
+    data["csize"] = data["bsize"] / data["rows"]
+    data["noofships"] = 5
+    #data["userboard"] = emptyGrid(data["rows"], data["cols"])
+    data["userboard"] = test.testGrid()
+    data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
+    return data
 
 
 '''
@@ -34,7 +42,9 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; Tkinter canvas
 Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
-    return
+    userCanvas = drawGrid(data, userCanvas, data["userboard"], True)
+    compCanvas = drawGrid(data, compCanvas, data["pcboard"], True)
+    return 
 
 
 '''
@@ -62,7 +72,7 @@ Parameters: int ; int
 Returns: 2D list of ints
 '''
 def emptyGrid(rows, cols):
-    grid=[[EMPTY_UNCLICKED]*cols for i in range(rows)]
+    grid = [[EMPTY_UNCLICKED] * cols for i in range(rows)]
     return grid
 # print(emptyGrid(10,10))
 # print(emptyGrid(4,6))
@@ -73,15 +83,15 @@ Parameters: no parameters
 Returns: 2D list of ints
 '''
 def createShip():
-    row,col=random.randint(1,8),random.randint(1,8)
-    edge=random.randint(0,1) 
-    ship1=[]
-    if edge==1:
-        for row in range(row-1,row+2):
-            ship1.append([row,col])#vertical
-    elif edge==0:#Horizontal
-        for col in range(col-1,col+2):
-            ship1.append([row,col])
+    row,col = random.randint(1,8), random.randint(1,8)
+    edge = random.randint(0, 1) 
+    ship1 = []
+    if edge == 1:
+        for row in range(row-1, row+2):
+            ship1.append([row, col])#vertical
+    elif edge == 0:#Horizontal
+        for col in range(col-1, col+2):
+            ship1.append([row, col])
     return ship1
 '''
 checkShip(grid, ship)
@@ -90,7 +100,7 @@ Returns: bool
 '''
 def checkShip(grid, ship):
     for i in ship:           
-        if grid[i[0]][i[1]]!=EMPTY_UNCLICKED:
+        if grid[i[0]][i[1]] != EMPTY_UNCLICKED:
             return False
     return True
 
@@ -100,13 +110,13 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):   
-    count=0
-    while count< numShips:
-        ship2=createShip()
-        if checkShip(grid,ship2):
+    count = 0
+    while count < numShips:
+        ship2 = createShip()
+        if checkShip(grid, ship2):
             for i in range(len(ship2)):
-                grid[ship2[i][0]][ship2[i][1]]=SHIP_UNCLICKED
-            count+=1
+                grid[ship2[i][0]][ship2[i][1]] = SHIP_UNCLICKED
+            count += 1
     return grid
 
 
@@ -116,7 +126,13 @@ Parameters: dict mapping strs to values ; Tkinter canvas ; 2D list of ints ; boo
 Returns: None
 '''
 def drawGrid(data, canvas, grid, showShips):
-    return
+    for row in range(data["rows"]):
+        for col in range(data["cols"]):
+            if grid[row][col] == SHIP_UNCLICKED:
+                canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "yellow")
+            else:
+                canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "blue")
+    return data
 
 
 ### WEEK 2 ###
@@ -127,7 +143,7 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isVertical(ship):
-    return
+    return 
 
 
 '''
@@ -288,5 +304,4 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    test.testAddShips()
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
