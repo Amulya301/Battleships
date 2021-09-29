@@ -143,7 +143,7 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isVertical(ship):
-    return
+    return 
 
 
 '''
