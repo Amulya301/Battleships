@@ -76,9 +76,7 @@ Returns: 2D list of ints
 def emptyGrid(rows, cols):
     grid = [[EMPTY_UNCLICKED] * cols for i in range(rows)]
     return grid
-# print(emptyGrid(10,10))
-# print(emptyGrid(4,6))
-# print(emptyGrid(0,0))
+
 '''
 createShip()
 Parameters: no parameters
@@ -146,9 +144,8 @@ Returns: bool
 '''
 def isVertical(ship):
     ship.sort()
-    if ship[0][1] == ship[1][1] == ship[2][1]:
-        if (ship[1][0] - ship[0][0] == 1) and (ship[2][0] - ship[1][0] == 1):
-            return True
+    if (ship[0][1] == ship[1][1] == ship[2][1]) and (ship[0][0] + 1 == ship[1][0] == ship[2][0] -1):
+        return True
     return False
 
 
@@ -159,9 +156,8 @@ Returns: bool
 '''
 def isHorizontal(ship):
     ship.sort()
-    if ship[0][0] == ship[1][0] == ship[2][0]:
-        if (ship[1][1] - ship[0][1] == 1) and (ship[2][1] - ship[1][1] == 1):
-            return True
+    if (ship[0][0] == ship[1][0] == ship[2][0]) and (ship[0][1] + 1 == ship[1][1] == ship[2][1] -1):
+        return True
     return False
 
 
