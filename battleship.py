@@ -44,6 +44,7 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     usercanvas = drawGrid(data, userCanvas, data["userboard"], True)
+    usership = drawShip(data, userCanvas, data["tempship"])
     compCanvas = drawGrid(data, compCanvas, data["pcboard"], True)
     return 
 
@@ -320,5 +321,4 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    test.testDrawShip()
-    #runSimulation(500, 500)
+    runSimulation(500, 500)
