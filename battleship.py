@@ -144,9 +144,8 @@ Returns: bool
 '''
 def isVertical(ship):
     ship.sort()
-    if ship[0][1] == ship[1][1] == ship[2][1]:
-        if (ship[1][0] - ship[0][0] == 1) and (ship[2][0] - ship[1][0] == 1):
-            return True
+    if (ship[0][1] == ship[1][1] == ship[2][1]) and (ship[0][0] + 1 == ship[1][0] == ship[2][0] -1):
+        return True
     return False
 
 
@@ -157,9 +156,8 @@ Returns: bool
 '''
 def isHorizontal(ship):
     ship.sort()
-    if ship[0][0] == ship[1][0] == ship[2][0]:
-        if (ship[1][1] - ship[0][1] == 1) and (ship[2][1] - ship[1][1] == 1):
-            return True
+    if (ship[0][0] == ship[1][0] == ship[2][0]) and (ship[0][1] + 1 == ship[1][1] == ship[2][1] -1):
+        return True
     return False
 
 
@@ -313,5 +311,5 @@ if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
     test.testIsHorizontal()
-    #test.testIsVertical()
+    test.testIsVertical()
     #runSimulation(500, 500)
