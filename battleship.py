@@ -33,7 +33,7 @@ def makeModel(data):
     data["userboard"] = emptyGrid(data["rows"], data["cols"])
     #data["userboard"] = test.testGrid()
     data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
-    data["tempship"] = createShip()
+    data["tempship"] = []
     data["usertrack"] = 0
     return data
 
