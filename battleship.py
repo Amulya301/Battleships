@@ -167,7 +167,7 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    x, y = event.x // data["csize"] , event.y // data["csize"]
+    x, y = int(event.x / data["csize"]) , int(event.y / data["csize"])
     return [y,x]
 
 
