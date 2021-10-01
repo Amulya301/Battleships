@@ -311,5 +311,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    #test.testDrawShip()
-    runSimulation(500, 500)
+    test.testDrawShip()
+    #runSimulation(500, 500)
