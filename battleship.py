@@ -222,15 +222,14 @@ Returns: None
 '''
 def clickUserBoard(data, row, col):
     if data["usertrack"] == 5:
-        return None
+        print("You can start the game")
+        return 
     for i in data["tempship"]:
         if [row,col] == i:
             return 
     data["tempship"].append([row,col])
     if len(data["tempship"]) == 3:
         placeShip(data)
-    if data["usertrack"] == 5:
-        print("You can start the game")
     return
 
 
