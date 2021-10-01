@@ -144,9 +144,8 @@ Returns: bool
 '''
 def isVertical(ship):
     ship.sort()
-    if ship[0][1] == ship[1][1] == ship[2][1]:
-        if (ship[1][0] - ship[0][0] == 1) and (ship[2][0] - ship[1][0] == 1):
-            return True
+    if (ship[0][1] == ship[1][1] == ship[2][1]) and (ship[0][0] + EMPTY_UNCLICKED == ship[1][0] == ship[2][0] - EMPTY_UNCLICKED):
+        return True
     return False
 
 
@@ -157,9 +156,8 @@ Returns: bool
 '''
 def isHorizontal(ship):
     ship.sort()
-    if ship[0][0] == ship[1][0] == ship[2][0]:
-        if (ship[1][1] - ship[0][1] == 1) and (ship[2][1] - ship[1][1] == 1):
-            return True
+    if (ship[0][0] == ship[1][0] == ship[2][0]) and (ship[0][1] + EMPTY_UNCLICKED == ship[1][1] == ship[2][1] -EMPTY_UNCLICKED):
+        return True
     return False
 
 
@@ -169,12 +167,8 @@ Parameters: dict mapping strs to values ; mouse event object
 Returns: list of ints
 '''
 def getClickedCell(data, event):
-    x = int(event.x / data["csize"])
-    y = int(event.y / data["csize"])
-    res = []
-    res.append(y)
-    res.append(x)
-    return res
+    x, y = event.x // data["csize"] , event.y // data["csize"]
+    return [y,x]
 
 
 '''
