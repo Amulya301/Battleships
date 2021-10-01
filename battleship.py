@@ -148,7 +148,7 @@ Returns: bool
 '''
 def isVertical(ship):
     ship.sort()
-    if (ship[0][1] == ship[1][1] == ship[2][1]) and (ship[0][0] + EMPTY_UNCLICKED == ship[1][0] == ship[2][0] -EMPTY_UNCLICKED):
+    if (ship[0][1] == ship[1][1] == ship[2][1]) and (ship[0][0] + 1 == ship[1][0] == ship[2][0] - 1):
         return True
     return False
 
@@ -160,7 +160,7 @@ Returns: bool
 '''
 def isHorizontal(ship):
     ship.sort()
-    if (ship[0][0] == ship[1][0] == ship[2][0]) and (ship[0][1] + EMPTY_UNCLICKED == ship[1][1] == ship[2][1] -EMPTY_UNCLICKED):
+    if (ship[0][0] == ship[1][0] == ship[2][0]) and (ship[0][1] + 1 == ship[1][1] == ship[2][1] - 1):
         return True
     return False
 
