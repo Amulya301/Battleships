@@ -207,7 +207,7 @@ def placeShip(data):
         data["usertrack"] +=1
     else:
         print("Ship is not valid")
-    data["tempship"] = createShip()
+    data["tempship"] = []
 
     return 
 
