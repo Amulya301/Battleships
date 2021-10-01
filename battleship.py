@@ -33,7 +33,7 @@ def makeModel(data):
     data["userboard"] = emptyGrid(data["rows"], data["cols"])
     #data["userboard"] = test.testGrid()
     data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
-    data["tempship"] = createShip()
+    data["tempship"] = []
     return data
 
 
@@ -311,5 +311,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    test.testDrawShip()
-    #runSimulation(500, 500)
+    #test.testDrawShip()
+    runSimulation(500, 500)
