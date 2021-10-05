@@ -35,6 +35,7 @@ def makeModel(data):
     data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
     data["tempship"] = []
     data["usertrack"] = 0
+    data["winnertrack"] = None
     return 
 
 
@@ -47,6 +48,8 @@ def makeView(data, userCanvas, compCanvas):
     drawGrid(data, userCanvas, data["userboard"], True)
     drawShip(data, userCanvas, data["tempship"])
     drawGrid(data, compCanvas, data["pcboard"], False)
+    drawGameOver(data, userCanvas)
+    drawGameOver(data, compCanvas)
     return 
 
 
@@ -65,6 +68,8 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
+    if data["winnertrack"] != None:
+        return 
     p = getClickedCell(data,event)
     if board == "user":
         clickUserBoard(data, p[0], p[1])
@@ -253,6 +258,8 @@ def updateBoard(data, board, row, col, player):
         board[row][col]=SHIP_CLICKED
     elif board[row][col] == EMPTY_UNCLICKED:
         board[row][col]=EMPTY_CLICKED
+    if isGameOver(board):
+        data["winnertrack"] = player
     return
 
 
@@ -294,15 +301,21 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isGameOver(board):
-    return
-
-
+    for row in range(len(board)):
+        for col in range(len(board[row])):
+            if board[row][col] == SHIP_UNCLICKED:
+                return False
+    return True
 '''
 drawGameOver(data, canvas)
 Parameters: dict mapping strs to values ; Tkinter canvas
 Returns: None
 '''
 def drawGameOver(data, canvas):
+    if data["winnertrack"] == "user" :
+        canvas.create_text(100,100, text ="Congratulations", fill = "white", font ="Georgia")
+    elif data["winnertrack"] == "comp" :
+        canvas.create_text(100,100, text = "You lost the game", fill = "white", font ="Georgia")
     return
 
 
@@ -363,5 +376,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    test.testGetComputerGuess()
+    test.testIsGameOver()
     runSimulation(500, 500)
