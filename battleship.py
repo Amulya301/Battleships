@@ -319,13 +319,13 @@ Returns: None
 def drawGameOver(data, canvas):
     if data["winnertrack"] == "user" :
         canvas.create_text(300,50, text ="Congratulations", fill = "red", font = ("Georgia 20 bold"))
-        print("Press Enter to play again")
+        canvas.create_text(300,50, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
     elif data["winnertrack"] == "comp" :
         canvas.create_text(300,50, text = "You lost the game", fill = "red", font = ("Georgia 20 bold"))
-        print("Press Enter to play again")
+        canvas.create_text(300,50, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
     elif data["winnertrack"] == "draw" :
         canvas.create_text(300,50, text = "Out of moves,it's a draw", fill = "red", font = ("Georgia 20 bold"))
-        print("Press Enter to play again")
+        canvas.create_text(300,50, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
     return
 
 
