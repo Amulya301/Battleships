@@ -68,7 +68,7 @@ def mousePressed(data, event, board):
     p = getClickedCell(data,event)
     if board == "user":
         clickUserBoard(data, p[0], p[1])
-    elif board == "comp":
+    else:
         runGameTurn(data, p[0], p[1])
     return 
 
@@ -262,13 +262,10 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
-    #checks if row,col values are clicked already on computer board,if present returns none
-    if (data["pcboard"][row][col] == SHIP_CLICKED) or (data["pcboard"][row][col]) == EMPTY_CLICKED:
+    if (data["pcboard"][row][col] == SHIP_CLICKED) or (data["pcboard"][row][col] == EMPTY_CLICKED) :
         return
-    # else it updates computer board based on user's click, that is user guess is processed and added to computer board
     else:
         updateBoard(data, data["pcboard"], row, col, "user")
-    return
 
 
 '''
@@ -278,7 +275,8 @@ Returns: list of ints
 '''
 def getComputerGuess(board):
     return
-    
+
+
 '''
 isGameOver(board)
 Parameters: 2D list of ints
@@ -354,5 +352,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    #test.testGetComputerGuess()
+    test.testUpdateBoard()
     runSimulation(500, 500)
