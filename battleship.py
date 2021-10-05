@@ -36,6 +36,8 @@ def makeModel(data):
     data["tempship"] = []
     data["usertrack"] = 0
     data["winnertrack"] = None
+    data["maxturn"] = 50
+    data["currentturn"] = 0
     return 
 
 
@@ -49,7 +51,6 @@ def makeView(data, userCanvas, compCanvas):
     drawShip(data, userCanvas, data["tempship"])
     drawGrid(data, compCanvas, data["pcboard"], False)
     drawGameOver(data, userCanvas)
-    drawGameOver(data, compCanvas)
     return 
 
 
@@ -277,6 +278,9 @@ def runGameTurn(data, row, col):
     x = getComputerGuess(data["userboard"])
     #calling updateboard function with values of getcomputerguesses
     updateBoard(data, data["userboard"], x[0], x[1], "comp")
+    data["currentturn"] +=1
+    if data["currentturn"] == data["maxturn"] :
+        data["winnertrack"] = "draw"
 
 '''
 getComputerGuess(board)
@@ -313,9 +317,11 @@ Returns: None
 '''
 def drawGameOver(data, canvas):
     if data["winnertrack"] == "user" :
-        canvas.create_text(100,100, text ="Congratulations", fill = "white", font ="Georgia")
+        canvas.create_text(300,100, text ="Congratulations", fill = "green", font ="Georgia")
     elif data["winnertrack"] == "comp" :
-        canvas.create_text(100,100, text = "You lost the game", fill = "white", font ="Georgia")
+        canvas.create_text(300,100, text = "You lost the game", fill = "green", font ="Georgia")
+    elif data["winnertrack"] == "draw" :
+        canvas.create_text(300,100, text = "Out of moves,it's a draw", fill = "green", font ="Georgia")
     return
 
 
