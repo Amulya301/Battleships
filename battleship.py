@@ -46,7 +46,7 @@ Returns: None
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data, userCanvas, data["userboard"], True)
     drawShip(data, userCanvas, data["tempship"])
-    drawGrid(data, compCanvas, data["pcboard"], True)
+    drawGrid(data, compCanvas, data["pcboard"], False)
     return 
 
 
@@ -68,6 +68,8 @@ def mousePressed(data, event, board):
     p = getClickedCell(data,event)
     if board == "user":
         clickUserBoard(data, p[0], p[1])
+    else:
+        runGameTurn(data, p[0], p[1])
     return 
 
 #### WEEK 1 ####
@@ -134,7 +136,13 @@ def drawGrid(data, canvas, grid, showShips):
         for col in range(data["cols"]):
             if grid[row][col] == SHIP_UNCLICKED:
                 canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "yellow")
-            else:
+            elif grid[row][col] == EMPTY_UNCLICKED:
+                canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "blue")
+            elif grid[row][col] == SHIP_CLICKED:
+                canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "red")
+            elif grid[row][col] == EMPTY_CLICKED:
+                canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "white")
+            if (grid[row][col] == SHIP_UNCLICKED) and (showShips == False):
                 canvas.create_rectangle(data["csize"] * col, data["csize"] * row, data["csize"] * (col+1), data["csize"] * (row+1), fill = "blue")
     return data
 
@@ -241,6 +249,10 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
+    if board[row][col] == SHIP_UNCLICKED:
+        board[row][col]=SHIP_CLICKED
+    elif board[row][col] == EMPTY_UNCLICKED:
+        board[row][col]=EMPTY_CLICKED
     return
 
 
@@ -250,7 +262,10 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
-    return
+    if (data["pcboard"][row][col] == SHIP_CLICKED) or (data["pcboard"][row][col] == EMPTY_CLICKED) :
+        return
+    else:
+        updateBoard(data, data["pcboard"], row, col, "user")
 
 
 '''
@@ -337,5 +352,5 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    #test.week2Tests()
+    test.testUpdateBoard()
     runSimulation(500, 500)
