@@ -386,5 +386,4 @@ def runSimulation(w, h):
 if __name__ == "__main__":
 
     ## Finally, run the simulation to test it manually ##
-    #test.testIsGameOver()
     runSimulation(500, 500)
