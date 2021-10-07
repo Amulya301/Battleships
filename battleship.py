@@ -60,7 +60,7 @@ Parameters: dict mapping strs to values ; key event object
 Returns: None
 '''
 def keyPressed(data, event):
-    if event:
+    if event.kesym == "Return":
         makeModel(data)
 
 
@@ -318,14 +318,15 @@ Returns: None
 '''
 def drawGameOver(data, canvas):
     if data["winnertrack"] == "user" :
-        canvas.create_text(300,50, text ="Congratulations", fill = "red", font = ("Georgia 20 bold"))
-        canvas.create_text(300,200, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text ="Congratulations", fill = "dark red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
+
     elif data["winnertrack"] == "comp" :
-        canvas.create_text(300,50, text = "You lost the game", fill = "red", font = ("Georgia 20 bold"))
-        canvas.create_text(300,200, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text = "You lost the game", fill = "dark red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
     elif data["winnertrack"] == "draw" :
-        canvas.create_text(300,50, text = "Out of moves,it's a draw", fill = "red", font = ("Georgia 20 bold"))
-        canvas.create_text(300,200, text ="Press Enter to play again", fill = "red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,50, text = "Out of moves,it's a draw", fill = "dark red", font = ("Georgia 20 bold"))
+        canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
     return
 
 
