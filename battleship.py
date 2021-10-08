@@ -35,7 +35,7 @@ def makeModel(data):
     data["pcboard"] = addShips(emptyGrid(data["rows"], data["cols"]), data["noofships"])
     data["tempship"] = []
     data["usertrack"] = 0
-    data["winnertrack"] = None
+    data["winnertrack"] =  None
     data["maxturn"] = 50
     data["currentturn"] = 0
     return 
@@ -60,7 +60,7 @@ Parameters: dict mapping strs to values ; key event object
 Returns: None
 '''
 def keyPressed(data, event):
-    if event.kesym == "Return":
+    if event.keycode == 13:
         makeModel(data)
 
 
@@ -318,13 +318,15 @@ Returns: None
 '''
 def drawGameOver(data, canvas):
     if data["winnertrack"] == "user" :
+        canvas.delete(ALL)
         canvas.create_text(300,50, text ="Congratulations", fill = "dark red", font = ("Georgia 20 bold"))
         canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
-
     elif data["winnertrack"] == "comp" :
+        canvas.delete(ALL)
         canvas.create_text(300,50, text = "You lost the game", fill = "dark red", font = ("Georgia 20 bold"))
         canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
     elif data["winnertrack"] == "draw" :
+        canvas.delete(ALL)
         canvas.create_text(300,50, text = "Out of moves,it's a draw", fill = "dark red", font = ("Georgia 20 bold"))
         canvas.create_text(300,200, text ="Press Enter to play again", fill = "dark red", font = ("Georgia 20 bold"))
     return
